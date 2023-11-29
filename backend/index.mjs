@@ -74,4 +74,6 @@ io.on("connection", (client) => {
 
 const port = config.get("port");
 
-server.listen(port);
+server.listen(port, () => {
+    console.log(`backend is running as a websocket server: ws://localhost:${port}`);
+});
