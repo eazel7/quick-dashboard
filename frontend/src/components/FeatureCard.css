@@ -1,0 +1,15 @@
+.FeatureCard {
+    min-width: 200px;
+    background-color:  gray;
+    display: inline-flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 4px;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.FeatureCard .Header {
+    min-height: 2em;
+    display: block;
+}

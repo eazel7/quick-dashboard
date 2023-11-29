@@ -1,0 +1,13 @@
+.MeasurementRows {
+    width: 100%;
+}
+
+.MeasurementRows .Values {
+    display: flex;
+}
+
+th.Label {
+    text-align: left;
+}
+
+

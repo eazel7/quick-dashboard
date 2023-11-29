@@ -7,7 +7,7 @@ const updateIntervalInMilliseconds =
   config.get("updateIntervalInSeconds") * 1000;
 
 function random(min, max) {
-  return min + Math.random() * (max - min);
+  return Number((min + Math.random() * (max - min)).toFixed(2));
 }
 
 function randomMeasurement() {
@@ -18,18 +18,12 @@ function randomMeasurement() {
 }
 
 function randomRows(numberOfRows) {
-  const array = Array(numberOfRows);
-
-  for (const index of array.keys()) {
-    array[index] = {
+  return [...Array(numberOfRows)].map(r => ({
       x: randomMeasurement(),
       y: randomMeasurement(),
       z: randomMeasurement(),
       diameter: randomMeasurement(),
-    };
-  }
-
-  return array;
+    }));
 }
 function createNewValues() {
   return {
@@ -59,7 +53,11 @@ setInterval(() => {
 }, config.updateRandomMeasurements);
 
 const server = http.createServer();
-const io = new SocketIOServer(server);
+const io = new SocketIOServer(server, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
 io.on("connection", (client) => {
   const interval = setInterval(() => {
     client.emit("new-values", measuredValues);
@@ -75,5 +73,7 @@ io.on("connection", (client) => {
 const port = config.get("port");
 
 server.listen(port, () => {
-    console.log(`backend is running as a websocket server: ws://localhost:${port}`);
+  console.log(
+    `backend is running as a websocket server: ws://localhost:${port}`
+  );
 });
