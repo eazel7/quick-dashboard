@@ -1,15 +1,37 @@
 .FeatureCard {
     min-width: 200px;
-    background-color:  gray;
     display: inline-flex;
     flex-direction: column;
     height: fit-content;
     margin: 4px;
-    border-radius: 4px;
-    padding: 2px;
+}
+
+table {
+    background-color: #d2d2d2;
+    padding: 4px;
+}
+
+th {
+    font-weight: 700;
+    text-align: left;
 }
 
 .FeatureCard .Header {
     min-height: 2em;
     display: block;
+    border-radius: 4px 4px 0 0 ;
+    padding-top: 2px;
+}
+
+
+.Green {
+    background-color: #329a5d;
+}
+
+.Yellow {
+    background-color: #e9c704;
+}
+
+.Red {
+    background-color: #f22e40;
 }

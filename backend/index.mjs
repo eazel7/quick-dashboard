@@ -11,9 +11,11 @@ function random(min, max) {
 }
 
 function randomMeasurement() {
+  const idealMeasurement = random(8, 12);
   return {
-    deviation: random(0, 10),
-    deviationTolerance: random(0, 5),
+    idealMeasurement: 10,
+    deviation: idealMeasurement,
+    deviationTolerance: random(0, 3)
   };
 }
 
@@ -27,30 +29,30 @@ function randomRows(numberOfRows) {
 }
 function createNewPartValues() {
   return {
-    "Seam": {
-    featureA: randomRows(6),
-    featureB: randomRows(1),
-    featureC: randomRows(1),
-    featureC: randomRows(1),
-    featureD: randomRows(1),
-    featureE: randomRows(3)
+    Seam: {
+      featureA: randomRows(6),
+      featureB: randomRows(1),
+      featureC: randomRows(1),
+      featureC: randomRows(1),
+      featureD: randomRows(1),
+      featureE: randomRows(3),
     },
-    "Slot": {
-    featureA: randomRows(6),
-    featureB: randomRows(1),
-    featureC: randomRows(1),
-    featureC: randomRows(1),
-    featureD: randomRows(1),
-    featureE: randomRows(3)
+    Slot: {
+      featureA: randomRows(6),
+      featureB: randomRows(1),
+      featureC: randomRows(1),
+      featureC: randomRows(1),
+      featureD: randomRows(1),
+      featureE: randomRows(3),
     },
-    "Hole": {
-    featureA: randomRows(6),
-    featureB: randomRows(1),
-    featureC: randomRows(1),
-    featureC: randomRows(1),
-    featureD: randomRows(1),
-    featureE: randomRows(3)
-    }
+    Hole: {
+      featureA: randomRows(6),
+      featureB: randomRows(1),
+      featureC: randomRows(1),
+      featureC: randomRows(1),
+      featureD: randomRows(1),
+      featureE: randomRows(3),
+    },
   };
 }
 
@@ -60,7 +62,8 @@ function updateRandomMeasurements(measuredValues) {
     for (const key in part) {
       for (const row of part[key]) {
         for (const measurement in row) {
-          row[measurement].deviation = random(0, 10);
+          row[measurement].deviation = random(-3, 3);
+          row[measurement].deviationTolerance = random(0, 3);
         }
       }
     }
