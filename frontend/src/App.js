@@ -35,7 +35,10 @@ function App() {
 
   return (
     <div className="App">
-      <Part partName="Part 1" currentValues={currentValues}></Part>
+      { Object.keys(currentValues).map(
+        partName => <Part partName={partName} currentValues={currentValues[partName]}></Part>
+      ) }
+      
     </div>
   );
 }

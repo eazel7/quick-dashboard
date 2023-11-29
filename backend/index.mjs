@@ -18,35 +18,56 @@ function randomMeasurement() {
 }
 
 function randomRows(numberOfRows) {
-  return [...Array(numberOfRows)].map(r => ({
-      x: randomMeasurement(),
-      y: randomMeasurement(),
-      z: randomMeasurement(),
-      diameter: randomMeasurement(),
-    }));
+  return [...Array(numberOfRows)].map((r) => ({
+    x: randomMeasurement(),
+    y: randomMeasurement(),
+    z: randomMeasurement(),
+    diameter: randomMeasurement(),
+  }));
 }
-function createNewValues() {
+function createNewPartValues() {
   return {
+    "Seam": {
     featureA: randomRows(6),
     featureB: randomRows(1),
     featureC: randomRows(1),
     featureC: randomRows(1),
     featureD: randomRows(1),
-    featureE: randomRows(3),
+    featureE: randomRows(3)
+    },
+    "Slot": {
+    featureA: randomRows(6),
+    featureB: randomRows(1),
+    featureC: randomRows(1),
+    featureC: randomRows(1),
+    featureD: randomRows(1),
+    featureE: randomRows(3)
+    },
+    "Hole": {
+    featureA: randomRows(6),
+    featureB: randomRows(1),
+    featureC: randomRows(1),
+    featureC: randomRows(1),
+    featureD: randomRows(1),
+    featureE: randomRows(3)
+    }
   };
 }
 
 function updateRandomMeasurements(measuredValues) {
-  for (const key in measuredValues) {
-    for (const row of measuredValues[key]) {
-      for (const measurement in row) {
-        row[measurement].deviation = random(0, 10);
+  for (const partName in measuredValues) {
+    const part = measuredValues[partName];
+    for (const key in part) {
+      for (const row of part[key]) {
+        for (const measurement in row) {
+          row[measurement].deviation = random(0, 10);
+        }
       }
     }
   }
 }
 
-const measuredValues = createNewValues();
+const measuredValues = createNewPartValues();
 
 setInterval(() => {
   updateRandomMeasurements(measuredValues);
