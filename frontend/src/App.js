@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       { Object.keys(currentValues).map(
-        partName => <Part partName={partName} currentValues={currentValues[partName]}></Part>
+        partName => <Part key={partName} partName={partName} currentValues={currentValues[partName]}></Part>
       ) }
       
     </div>
